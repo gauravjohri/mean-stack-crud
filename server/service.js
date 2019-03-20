@@ -1,5 +1,6 @@
 var router = require("express")();
 var md = require("express-mongo-db");
+var ObjectId = require("mongodb").ObjectID;
 const url = "mongodb://localhost:27017/mydb";
 router.use(md(url));
 var bodyParser = require('body-parser');
@@ -13,11 +14,23 @@ router.get("/:tbl", function (req, res) {
         res.send(data);
     });
 });
-router.post("/add/:tbl", function (req, res) {
-    console.log(req.body);
-   
-    req.db.collection(req.params.tbl).insertOne(req.body, function (err, data) { 
-        res.send({"msg":req.params.tbl});
+router.get("/:tbl/:id", function (req, res) {
+    req.db.collection(req.params.tbl).findOne({ "_id": ObjectId(req.params.id) }).then(function (data) {
+        res.send(data);
     });
+});
+router.post("/add/:tbl/:id?", function (req, res) {
+    console.log(req.body);
+    if (req.params.id) {
+       query = { "_id": ObjectId(req.params.id) };
+
+        req.db.collection(req.params.tbl).updateOne(query,req.body, function (err, data) {
+            res.send({ "msg": req.params.tbl });
+        });
+    } else {
+        req.db.collection(req.params.tbl).insertOne(req.body, function (err, data) {
+            res.send({ "msg": req.params.tbl });
+        });
+    }
 });
 module.exports = router;
