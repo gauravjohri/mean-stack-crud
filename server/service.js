@@ -19,8 +19,12 @@ router.get("/:tbl/:id", function (req, res) {
         res.send(data);
     });
 });
+router.delete("/:tbl/:id", function (req, res) {
+    req.db.collection(req.params.tbl).deleteOne({ "_id": ObjectId(req.params.id) }).then(function (data) {
+        res.send(data);
+    });
+});
 router.post("/add/:tbl/:id?", function (req, res) {
-    console.log(req.body);
     if (req.params.id) {
        query = { "_id": ObjectId(req.params.id) };
 

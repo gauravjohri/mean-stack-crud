@@ -1,7 +1,7 @@
 <div class="example-container">
   <form #blogsForm="ngForm" (ngSubmit)="submit(blogsForm)">
   <mat-form-field>
-    <input matInput placeholder="Input" name="title" [value]="fetchedData.title" ngModel #title="ngModel" required />
+    <input matInput placeholder="Input" name="title" value="{{fetchedData.title}}" ngModel #title="ngModel" required />
     <app-messages [form]="blogsForm" [field]="title" ></app-messages>
   </mat-form-field>
   <mat-form-field>
