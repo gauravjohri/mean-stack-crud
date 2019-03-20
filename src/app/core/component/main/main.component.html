@@ -1,0 +1,17 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/home">
+      <mat-icon>dialpad</mat-icon>
+      <span>Home</span>
+    </button>
+   
+    <button mat-menu-item routerLink="/home/add">
+      <mat-icon>notifications_off</mat-icon>
+      <span>Add New </span>
+    </button>
+  </mat-menu>
+  
+<router-outlet></router-outlet>
+footer

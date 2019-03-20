@@ -1,0 +1,5 @@
+<div *ngIf="form.submitted && field.invalid" class="invalid-feedback">
+    <div *ngIf="field.errors.required">{{field.name | titlecase}} is required</div>
+    <div *ngIf="field.errors.minlength">{{field.name | titlecase}} must be at least 6 characters</div>
+    <div *ngIf="field.errors.email">{{field.name | titlecase}} must be a valid email address</div>
+</div>

@@ -1,0 +1,17 @@
+<div class="example-container">
+  <form #blogsForm="ngForm" (ngSubmit)="submit(blogsForm)">
+  <mat-form-field>
+    <input matInput placeholder="Input" name="title" ngModel #title="ngModel" required />
+    <app-messages [form]="blogsForm" [field]="title" ></app-messages>
+  </mat-form-field>
+{{blogsForm.valid}}
+  <mat-form-field>
+    <textarea matInput name="body" ngModel placeholder="Textarea" #body="ngModel" required ></textarea>
+    <app-messages [form]="blogsForm" [field]="body" ></app-messages>
+  </mat-form-field>
+    <button type="submit" [disabled]="submitted" >Save</button>
+    <div >
+     
+    </div>
+</form>
+</div>
