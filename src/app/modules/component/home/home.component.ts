@@ -3,12 +3,12 @@ import { HttpClient } from "@angular/common/http";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  // styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
   constructor(public http:HttpClient) { }
-  displayedColumns: string[] = ['title', 'body'];
+  displayedColumns: string[] = ['title', 'body','edit','delete'];
   dataSource:any = [];
   ngOnInit() {
     this.http.get("http://localhost:3000/blogs/").subscribe(data=>{

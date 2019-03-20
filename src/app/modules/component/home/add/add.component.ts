@@ -20,13 +20,13 @@ export class AddComponent implements OnInit {
       })
     };
     let data = "";
-    for (let key in formData.value) {
-      data += "&" + key + "=" + formData[key];
+    let formFinalData = formData.value;
+    for (let key in formFinalData) {
+      data += "&" + key + "=" + formFinalData[key];
     }
-    
     if (formData.valid) {
       this.http.post("http://localhost:3000/add/blogs/", data, httpOptions).subscribe(data => {
-        //this.router.navigateByUrl("home");
+        this.router.navigateByUrl("home");
         this.submitted=true;
       })
     }

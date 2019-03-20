@@ -8,7 +8,7 @@
     <textarea matInput name="body" ngModel placeholder="Textarea" #body="ngModel" required ></textarea>
     <app-messages [form]="blogsForm" [field]="body" ></app-messages>
   </mat-form-field>
-    <button type="submit" [disabled]="submitted" >Save</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="submitted" >Save</button>
     <div >
      
     </div>
