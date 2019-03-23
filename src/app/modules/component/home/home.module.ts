@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableModule,MatMenuModule,MatIconModule,MatFormFieldModule,MatSelectModule,MatInputModule,MatButtonModule} from '@angular/material';
+import {MatTableModule,MatMenuModule,MatIconModule,MatFormFieldModule,MatSelectModule,MatInputModule,MatButtonModule,MatSnackBarModule} from '@angular/material';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule } from "@angular/forms";
 import { HomeComponent } from './home.component';
@@ -17,7 +17,7 @@ import { MessagesComponent } from 'src/app/shared/component/messages/messages.co
     MatMenuModule,
     MatIconModule,
     MatFormFieldModule,
-    MatSelectModule,MatInputModule,MatButtonModule,
+    MatSelectModule,MatInputModule,MatButtonModule,MatSnackBarModule,
     FormsModule
    
   ],

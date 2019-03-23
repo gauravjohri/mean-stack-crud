@@ -1,13 +1,16 @@
 <div class="example-container">
   <form #blogsForm="ngForm" (ngSubmit)="submit(blogsForm)">
   <mat-form-field>
-    <input matInput placeholder="Input" name="title" value="{{fetchedData.title}}" ngModel #title="ngModel" required />
+    <input matInput placeholder="Input" name="title" [ngModel]="fetchedData.title" #title="ngModel" required />
     <app-messages [form]="blogsForm" [field]="title" ></app-messages>
   </mat-form-field>
   <mat-form-field>
-    <textarea matInput name="body" ngModel placeholder="Textarea" #body="ngModel" required [value]="fetchedData.body"></textarea>
+    <textarea matInput name="body" ngModel placeholder="Textarea" #body="ngModel" required [ngModel]="fetchedData.body"></textarea>
     <app-messages [form]="blogsForm" [field]="body" ></app-messages>
   </mat-form-field>
+  <img [src]="imgURL" height="100" width="100" *ngIf="imgURL">
+  <button mat-raised-button color="primary" (click)="fileInput.click()" type="button"  >Upload</button>
+  <input type="file" hidden #fileInput (change)="onSelect($event);" />
     <button mat-raised-button color="primary" type="submit" [disabled]="submitted" >Save</button>
     <div >
      

@@ -1,6 +1,7 @@
 var router = require("express")();
 var md = require("express-mongo-db");
 var ObjectId = require("mongodb").ObjectID;
+const fileUpload = require('express-fileupload');
 const url = "mongodb://localhost:27017/mydb";
 router.use(md(url));
 var bodyParser = require('body-parser');
@@ -8,7 +9,7 @@ router.use(bodyParser.urlencoded({
     extended: true
 }));
 router.use(bodyParser.json());
-
+router.use(fileUpload());
 router.get("/:tbl", function (req, res) {
     req.db.collection(req.params.tbl).find().toArray(function (err, data) {
         res.send(data);
@@ -25,10 +26,19 @@ router.delete("/:tbl/:id", function (req, res) {
     });
 });
 router.post("/add/:tbl/:id?", function (req, res) {
-    if (req.params.id) {
-       query = { "_id": ObjectId(req.params.id) };
+    if (req.files !== null) {
+        let file = req.files.image;
+        file.mv("uploads/" + file.name, function (err) {
+            if (!err) {
+                console.log("file Uploaded");
 
-        req.db.collection(req.params.tbl).updateOne(query,req.body, function (err, data) {
+            }
+        });
+    }
+    if (req.params.id) {
+        query = { "_id": ObjectId(req.params.id) };
+
+        req.db.collection(req.params.tbl).updateOne(query, req.body, function (err, data) {
             res.send({ "msg": req.params.tbl });
         });
     } else {
